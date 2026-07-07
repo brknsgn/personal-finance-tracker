@@ -1,23 +1,31 @@
 const request = require('supertest');
 const app = require('../server');
 const mongoose = require('mongoose');
+const { MongoMemoryServer } = require('mongodb-memory-server');
 
-// Connect to the test database before running tests
+let mongoServer;
 
-describe('Transaction API', () => { // Group related tests for the Transaction API
+describe('Transaction API', () => {
+    beforeAll(async () => {
+        mongoServer = await MongoMemoryServer.create();
+        const uri = mongoServer.getUri();
+        await mongoose.connect(uri);
+    });
+
     afterAll(async () => {
-        if (mongoose.connection.readyState === 1) { // Check if the connection is open
-            await mongoose.connection.close(); // Close the connection if it's open
+        if (mongoose.connection.readyState === 1) {
+            await mongoose.connection.dropDatabase();
+            await mongoose.connection.close();
         }
-    
+        if (mongoServer) {
+            await mongoServer.stop();
+        }
     });
 
-    it('GET /transactions - should return a list of transactions with a 200 status', async () => { // Test the GET /transactions endpoint
-        const res = await request(app).get('/transactions'); // Make a GET request to the /transactions endpoint
-
-        expect(res.statusCode).toBe(200); // Assert that the response status code is 200 (OK)
-        expect(res.body.success).toBe(true); // Assert that the success field in the response body is true
-        expect(Array.isArray(res.body.data)).toBe(true); // Assert that the data field in the response body is an array
+    it('GET /transactions - should return a list of transactions with a 200 status', async () => {
+        const res = await request(app).get('/transactions');
+        expect(res.statusCode).toBe(200);
+        expect(res.body.success).toBe(true);
+        expect(Array.isArray(res.body.data)).toBe(true);
     });
-
 });

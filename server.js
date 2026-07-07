@@ -71,20 +71,17 @@ app.use((req, res, next) => { // If no route matches, this middleware will be ca
 
 // START THE SERVER
 app.use(errorHandler);
-const PORT = process.env.PORT || 3000
+
 // Start the server only if this file is run directly (not imported for testing)
+// Eğer dosya doğrudan çalıştırılıyorsa (test edilmiyorsa) sunucuyu başlat
 if (require.main === module) {
+    const PORT = process.env.PORT || 3000;
     app.listen(PORT, () => {
-        console.log(`Server running on port ${PORT}`);
+        console.log(`Server is running on port ${PORT}`);
     });
 }
 
-// Export the app for testing purposes
-module.exports = app;
-
-
-
-
+module.exports = app; // Testler için app'i dışa aktar
 
 
 

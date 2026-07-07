@@ -52,3 +52,81 @@ paths:
       responses: 
         '201':
           description: Successfully created a new transaction.
+
+  /categories:
+    get:
+      summary: Retrieve a list of all categories.
+      responses:
+        '200':
+          description: Successfully retrieved the list of categories.
+    post:
+      summary: Create a new category.
+      requestBody:
+        description: The category to create.
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: The name of the category (e.g., Groceries, Salary, Rent).
+      responses:
+        '201':
+          description: Successfully created a new category.
+
+  /categories/{id}:
+    get:
+      summary: Retrieve a single category by ID.
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+          description: The ID of the category to retrieve.
+      responses:
+        '200':
+          description: Successfully retrieved the category.
+        '404':
+          description: Category not found.
+    put:
+      summary: Update a single category by ID.
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+          description: The ID of the category to update.
+      requestBody:
+        description: The updated category data.
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: The updated name of the category.
+      responses:
+        '200':
+          description: Successfully updated the category.
+        '404':
+          description: Category not found.
+    delete:
+      summary: Delete a single category by ID.
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+          description: The ID of the category to delete.
+      responses:
+        '200':
+          description: Successfully deleted the category.
+        '404':
+          description: Category not found.
