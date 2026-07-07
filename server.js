@@ -5,7 +5,7 @@ require('dotenv').config()
 
 // 2. Import Express and the database connection
 const express = require('express'); // Import the Express framework to create the server
-const connectDB = require('./config/db');  // Import the database connection function to connect to MongoDB
+const connectDB = require('./src/config/db');  // Import the database connection function to connect to MongoDB
 const cors = require('cors'); // Import CORS middleware to handle cross-origin requests
 const morgan = require('morgan'); // Import Morgan middleware for logging HTTP requests
 const rateLimit = require('express-rate-limit'); // Import rate limiting middleware to prevent abuse and DDoS attacks

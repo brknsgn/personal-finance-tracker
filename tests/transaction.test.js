@@ -24,6 +24,11 @@ describe('Transaction API', () => {
 
     it('GET /transactions - should return a list of transactions with a 200 status', async () => {
         const res = await request(app).get('/transactions');
+        
+        
+        console.log("Status code coming from the server:", res.statusCode);
+        console.log("Response coming from the server (BODY):", res.body);
+
         expect(res.statusCode).toBe(200);
         expect(res.body.success).toBe(true);
         expect(Array.isArray(res.body.data)).toBe(true);
