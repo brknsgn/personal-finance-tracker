@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
 
 export default function TransactionTable() {
-  // ==========================================
-  // 1. STATE MANAGEMENT (Durum Yönetimi)
-  // ==========================================
+ 
+  // 1. STATE MANAGEMENT 
+
   
   // useState allows this component to remember data between renders.
   // 'transactions' will hold the array of data coming from the backend.
@@ -17,9 +17,7 @@ export default function TransactionTable() {
   // 'error' will store any error message if the backend request fails.
   const [error, setError] = useState(null); 
 
-  // ==========================================
   // 2. DATA FETCHING / SIDE EFFECTS 
-  // ==========================================
   
   // useEffect is used to perform operations that reach outside the component (like API calls).
   useEffect(() => {
@@ -64,10 +62,7 @@ export default function TransactionTable() {
   // It tells React: "Only run this useEffect ONCE when the component first appears on the screen (mounts)."
   // If you forget to add this array, React will fetch data infinitely in a loop, crashing your app.
 
-
-  // ==========================================
-  // 3. CONDITIONAL RENDERING (Koşullu Ekran Çizimi)
-  // ==========================================
+  // 3. CONDITIONAL RENDERING 
 
   // State 1: Loading Indicator
   // If isLoading is true, we stop rendering the rest of the component and show this instead.
@@ -87,7 +82,7 @@ export default function TransactionTable() {
     return <div>No transactions found. Add your first expense!</div>;
   }
 
-  // State 4: Data Display (Success)
+  // State 4: Data Display
   // If the code passes all the checks above, it means data exists and is ready to be shown.
   return (
     <div>
