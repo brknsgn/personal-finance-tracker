@@ -12,21 +12,21 @@ const transactionSchema = new mongoose.Schema({
         enum: {
             values: ["income", "expense"],
             message: "Type must be either 'income' or 'expense'"
-            
         }
-
     },
     category: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Category',
-        required: [true, "Category is required"],
-    
-    },
-    note: {
         type: String,
-        maxlength: [200, "Note cannot exceed 200 characters"],
+        required: [true, "Category is required"],
+    },
+    
+    // WE CHANGED 'note' TO 'description' TO MATCH OUR REACT FRONTEND
+    description: {
+        type: String,
+        // Updated the error message to say 'Description' instead of 'Note'
+        maxlength: [200, "Description cannot exceed 200 characters"],
         trim: true
     },
+    
     date: {
         type: Date,
         default: Date.now,
@@ -35,5 +35,5 @@ const transactionSchema = new mongoose.Schema({
 }, {
     timestamps: true
 }); 
+
 module.exports = mongoose.model('Transaction', transactionSchema);
-    
