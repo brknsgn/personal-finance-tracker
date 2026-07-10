@@ -24,6 +24,44 @@ connectDB();
 app.use(cors());// Enable Cross-Origin Resource Sharing
 app.use(express.json()); // Parse incoming JSON requests 
 app.use(morgan('dev')); // Log HTTP requests
+// backend/server.js (veya routes dosyan)
+
+app.get('/export/csv', async (req, res) => {
+  try {
+    // 1. Fetch all transactions from the database. Sort by newest first (-1).
+    const transactions = await Transaction.find().sort({ date: -1 });
+
+    // 2. Define the CSV header row exactly as we want it to appear in Excel.
+    // \n means "move to the next line" (Enter key).
+    let csvString = 'Description,Amount,Type,Category,Date\n';
+
+    // 3. Loop through each transaction and format it as a CSV row.
+    transactions.forEach((t) => {
+      // Wrap description in quotes ("") to prevent accidental commas inside the text from breaking the columns.
+      const desc = `"${t.description || 'No Description'}"`;
+      const amount = t.amount;
+      const type = t.type;
+      const category = t.category;
+      
+      // Format the date to a readable local string (e.g., 10.07.2026).
+      const date = new Date(t.date || t.createdAt).toLocaleDateString('tr-TR');
+      
+      // Append the new row to our main csv string, separating values with commas.
+      csvString += `${desc},${amount},${type},${category},${date}\n`;
+    });
+
+    // 4. Set the exact headers to force the browser to trigger a file download.
+    res.setHeader('Content-Type', 'text/csv; charset=utf-8');
+    res.setHeader('Content-Disposition', 'attachment; filename="transactions.csv"');
+
+    // 5. Send the raw CSV string directly to the client.
+    res.status(200).send(csvString);
+
+  } catch (error) {
+    console.error('CSV Export Error:', error);
+    res.status(500).json({ message: "Failed to export CSV." });
+  }
+});
 
 // Configure rate limiting to prevent DDoS attacks
 const limiter = rateLimit({
@@ -64,6 +102,7 @@ app.use((req, res, next) => {
 // 8. Error Handling Middleware
 // This must be the last middleware in the stack
 const errorHandler = require('./src/middlewares/errorMiddleware');
+const Transaction = require('./src/models/Transaction');
 app.use(errorHandler);
 
 // 9. START THE SERVER
