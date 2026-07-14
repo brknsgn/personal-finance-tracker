@@ -64,21 +64,34 @@ export default function TransactionForm({ onTransactionAdded }) {
   };
 
   return (
-    <div style={{ padding: '20px', border: '2px solid #eee', marginBottom: '20px' }}>
-      
-      <h3>Add a New Transaction</h3>
+    <div className="bg-white p-6 rounded-2xl shadow-md mb-6">
+      <h3 className="text-xl font-bold text-gray-800 mb-6">
+    ➕ Add New Transaction
+</h3>
+<p className="text-gray-500 mb-6">
+    Add your income and expenses here.
+</p>
       
       <form onSubmit={handleSubmit} style={{ display: 'flex', flexWrap: 'wrap', gap: '15px', alignItems: 'center' }}>
         
         <div>
           <label>Description: </label>
-          <input 
-            type="text" 
-            value={description} 
-            onChange={(e) => setDescription(e.target.value)} 
-            required 
-            placeholder="e.g., Coffee"
-          />
+          <input
+    type="text"
+    value={description}
+    onChange={(e) => setDescription(e.target.value)}
+    className="
+        w-full
+        border
+        border-gray-300
+        rounded-xl
+        px-4
+        py-3
+        focus:outline-none
+        focus:ring-2
+        focus:ring-emerald-500
+    "
+/>
         </div>
 
         <div>
@@ -88,14 +101,35 @@ export default function TransactionForm({ onTransactionAdded }) {
             value={amount} 
             onChange={(e) => setAmount(e.target.value)} 
             required 
-            placeholder="50"
+             className="
+        w-full
+        border
+        border-gray-300
+        rounded-xl
+        px-4
+        py-3
+        focus:outline-none
+        focus:ring-2
+        focus:ring-emerald-500
+    "
           />
         </div>
 
         <div>
           <label>Type: </label>
           {/* We use our custom handleTypeChange function here instead of a direct setState */}
-          <select value={type} onChange={handleTypeChange}>
+          <select value={type} onChange={handleTypeChange}
+           className="
+        w-full
+        border
+        border-gray-300
+        rounded-xl
+        px-4
+        py-3
+        focus:outline-none
+        focus:ring-2
+        focus:ring-emerald-500
+    ">
             <option value="expense">Expense</option>
             <option value="income">Income</option>
           </select>
@@ -103,7 +137,20 @@ export default function TransactionForm({ onTransactionAdded }) {
 
         <div>
           <label>Category: </label>
-          <select value={category} onChange={(e) => setCategory(e.target.value)}>
+          <select 
+          value={category} onChange={(e) => setCategory(e.target.value)}
+          
+           className="
+        w-full
+        border
+        border-gray-300
+        rounded-xl
+        px-4
+        py-3
+        focus:outline-none
+        focus:ring-2
+        focus:ring-emerald-500
+    ">
             
             {/* 
               Conditional Rendering (Ternary Operator): 
@@ -129,7 +176,20 @@ export default function TransactionForm({ onTransactionAdded }) {
           </select>
         </div>
 
-        <button type="submit" style={{ padding: '5px 15px', cursor: 'pointer' }}>
+        <button
+  type="submit"
+  className="
+    bg-emerald-500
+    hover:bg-emerald-600
+    text-white
+    px-6
+    py-3
+    rounded-xl
+    font-semibold
+    transition
+    cursor-pointer
+  "
+>
           Save Transaction
         </button>
 

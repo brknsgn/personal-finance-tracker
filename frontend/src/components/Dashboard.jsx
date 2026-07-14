@@ -2,6 +2,9 @@ import { useState, useEffect } from 'react';
 import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend, ArcElement } from 'chart.js';
 import { Pie, Line } from 'react-chartjs-2';
 import TransactionForm from './TransactionForm';
+import {FaWallet,FaArrowUp,FaArrowDown} from "react-icons/fa";
+import { FaChartPie, FaChartLine } from "react-icons/fa";
+import CountUp from "react-countup";
 
 // COMPONENT IMPORTS (Make sure your file paths are correct)
 import TransactionTable from './TransactionTable'; 
@@ -162,11 +165,28 @@ const fetchTransactions = async () => {
   });
 
  return (
-    <div className="mb-8">
+    <div className="
+    max-w-7xl
+    mx-auto
+    px-6
+    py-8
+    min-h-screen
+    bg-linear-to-br
+    from-slate-50
+    to-gray-100
+">
       
       {/* EXPORT BUTTON */}
-      <div className="flex justify-end mb-4">
-        <button onClick={handleDownloadCSV} className="px-4 py-2 bg-emerald-500 hover:bg-emerald-600 text-white font-bold rounded cursor-pointer transition-colors">
+      <div className="flex justify-end mb-8">
+        <button onClick={handleDownloadCSV} className="px-5 py-3
+    bg-emerald-500
+    hover:bg-emerald-600
+    text-white
+    rounded-xl
+    shadow-md
+    hover:shadow-lg
+    transition-all
+">
           📥 Export to CSV
         </button>
       </div>
@@ -184,17 +204,27 @@ const fetchTransactions = async () => {
       )}
 
       {/* BALANCE CARDS */}
-      <div className="flex flex-row gap-3 md:gap-5 mb-5 overflow-x-auto">
-        <div className="flex-1 p-4 bg-green-50 border border-green-200 rounded-lg min-w-32.5">
-          <h4 className="text-green-700 font-semibold mb-1 text-sm md:text-base">Total Income</h4>
+      
+      <div className="flex gap-4 mb-6 overflow-hidden">
+        
+       <div className="flex-1 p-6 bg-green-50 border border-green-200 rounded-2xl shadow-md hover:-translate-y-1 hover:shadow-xl transition-all duration-300">
+        
+          <h4 className="flex items-center gap-2 text-green-700 font-semibold mb-1 text-sm md:text-base">
+    <FaArrowUp />
+    Total Income
+</h4>
           <h2 className="text-green-600 text-lg md:text-2xl font-bold m-0">+₺{totalIncome}</h2>
         </div>
-        <div className="flex-1 p-4 bg-red-50 border border-red-200 rounded-lg min-w-32.5">
-          <h4 className="text-red-700 font-semibold mb-1 text-sm md:text-base">Total Expense</h4>
+       <div className="flex-1 p-6 bg-red-50 border border-red-200 rounded-2xl shadow-md hover:-translate-y-1 hover:shadow-xl transition-all duration-300 ">
+          <h4 className="flex items-center gap-2 text-red-700 font-semibold mb-1 text-sm md:text-base"><FaArrowDown />Total Expense
+          </h4>
           <h2 className="text-red-600 text-lg md:text-2xl font-bold m-0">-₺{totalExpense}</h2>
         </div>
-        <div className="flex-1 p-4 bg-blue-50 border border-blue-200 rounded-lg min-w-32.5">
-          <h4 className="text-blue-700 font-semibold mb-1 text-sm md:text-base">Current Balance</h4>
+        <div className="flex-1 p-6 bg-blue-50 border border-blue-200 rounded-2xl shadow-md hover:-translate-y-1 hover:shadow-xl transition-all duration-300 ">
+         <h4 className="flex items-center gap-2 text-blue-700 font-semibold mb-1 text-sm md:text-base">
+    <FaWallet />
+    Current Balance
+</h4>
           <h2 className={`text-lg md:text-2xl font-bold m-0 ${balance >= 0 ? 'text-black' : 'text-red-600'}`}>
             ₺{balance}
           </h2>
@@ -203,8 +233,11 @@ const fetchTransactions = async () => {
 
       {/* CHARTS SECTION */}
       <div className="flex flex-col lg:flex-row gap-5 mb-8">
-        <div className="flex-1 min-w-75 p-5 border border-gray-200 rounded-lg shadow-sm bg-white">
-          <h4 className="text-center text-gray-700 font-semibold mb-4">Expense Distribution (Category)</h4>
+        <div className="flex-1 min-w-75 p-8 border border-gray-200 rounded-2xl shadow-md bg-white">
+          <h4 className="flex items-center justify-center gap-2 text-lg font-semibold mb-8">
+    <FaChartPie />
+    Expense Distribution
+</h4>
           <div className="h-62.5 flex justify-center">
             {Object.keys(categoryTotals).length > 0 ? (
               <Pie data={pieData} options={{ maintainAspectRatio: false }} />
@@ -213,8 +246,11 @@ const fetchTransactions = async () => {
             )}
           </div>
         </div>
-        <div className="flex-2 min-w-75 lg:min-w-100 p-5 border border-gray-200 rounded-lg shadow-sm bg-white">
-          <h4 className="text-center text-gray-700 font-semibold mb-4">Monthly Income & Expense Trend</h4>
+        <div className="flex-2 min-w-75 lg:min-w-100 p-8 border border-gray-200 rounded-2xl shadow-md bg-white">
+          <h4 className="flex items-center justify-center gap-2 text-lg font-semibold mb-8">
+    <FaChartLine />
+    Monthly Trend
+</h4>
           <div className="h-62.5">
             {allMonths.length > 0 ? (
               <Line data={lineData} options={{ maintainAspectRatio: false }} />

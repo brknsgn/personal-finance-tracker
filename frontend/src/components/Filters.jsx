@@ -3,25 +3,36 @@ export default function Filters({
   selectedDate, setSelectedDate
 }) {
   return (
-    <div style={{
-      padding: '15px',
-      border: '1px solid #ccc',
-      marginBottom: '20px',
-      display:'flex',
-      gap: '20px',
-      alignItems: 'center',
-      backgroundColor: '#f9f9f9',
-      borderRadius: '4px'
-    }}>
-      <h4 style={{ margin: 0 }}>Filters:</h4>
+  <div className="
+    bg-white
+    shadow-md
+    rounded-2xl
+    p-6
+    mb-6
+    flex
+    flex-wrap
+    gap-6
+    items-center
+">
+    
       
       {/* Category Dropdown Filter */}
       <div>
         <label style={{ marginRight: '10px' }}>Category:</label>
         <select
-          value={selectedCategory}
-          onChange={(e) => setSelectedCategory(e.target.value)}
-        >
+  value={selectedCategory}
+  onChange={(e) => setSelectedCategory(e.target.value)}
+  className="
+    border
+    border-gray-300
+    rounded-xl
+    px-4
+    py-2
+    focus:outline-none
+    focus:ring-2
+    focus:ring-emerald-500
+  "
+>
           <option value="all">All Categories</option>
           <option value="food">Food</option>
           <option value="rent">Rent</option>
@@ -38,14 +49,33 @@ export default function Filters({
           type="date"
           value={selectedDate}
           onChange={(e) => setSelectedDate(e.target.value)}
+          className="
+    border
+    border-gray-300
+    rounded-xl
+    px-4
+    py-2
+    focus:outline-none
+    focus:ring-2
+    focus:ring-emerald-500
+"
         />
         
         {/* Render a "Clear Date" button only if a date is currently selected */}
         {selectedDate && (
           <button
-            onClick={() => setSelectedDate('')}
-            style={{ marginLeft: '10px', cursor: 'pointer', padding: '2px 8px' }}
-          >
+  onClick={() => setSelectedDate('')}
+  className="
+      ml-3
+      px-3
+      py-2
+      bg-gray-200
+      hover:bg-gray-300
+      rounded-lg
+      transition
+      cursor-pointer
+  "
+>
             Clear Date
           </button>
         )}
