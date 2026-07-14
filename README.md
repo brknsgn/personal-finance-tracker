@@ -140,7 +140,8 @@ UI Update
 ### Transactions Page
 
 
-<img width="1246" height="676" alt="image" src="https://github.com/user-attachments/assets/efb34bca-ab57-45f2-8b63-e08dc59abc7c" />
+<img width="1131" height="887" alt="image" src="https://github.com/user-attachments/assets/ac9515ce-c2e5-486d-8633-8b8552c753fb" />
+
 
 
 
