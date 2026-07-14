@@ -31,7 +31,7 @@ export default function Dashboard() {
   // FETCH SUMMARY: Runs only once when the dashboard loads
 const fetchSummary = async () => {
     try {
-      const response = await fetch('http://localhost:3000/transactions/summary');
+      const response = await fetch('https://personal-finance-tracker-avnm.onrender.com/transactions/summary');
       const result = await response.json();
       if (result.success) setSummary(result.data);
     } catch (error) { console.error("Failed to fetch summary:", error); }
@@ -46,7 +46,7 @@ const fetchSummary = async () => {
 const fetchTransactions = async () => {
     setIsLoading(true);
     try {
-      const url = `http://localhost:3000/transactions?page=${currentPage}&limit=${limit}&category=${filterCategory}&date=${filterDate}`;
+      const url = `https://personal-finance-tracker-avnm.onrender.com/transactions?page=${currentPage}&limit=${limit}&category=${filterCategory}&date=${filterDate}`;
       const response = await fetch(url);
       const result = await response.json();
       
@@ -76,7 +76,7 @@ const fetchTransactions = async () => {
     if (!isConfirmed) return;
     
     try {
-      const response = await fetch(`http://localhost:3000/transactions/${id}`, { method: 'DELETE' });
+      const response = await fetch(`https://personal-finance-tracker-avnm.onrender.com/transactions/${id}`, { method: 'DELETE' });
       if (response.ok) {
         fetchTransactions(); 
         fetchSummary(); 
@@ -86,7 +86,7 @@ const fetchTransactions = async () => {
   // EXPORT FUNCTION: Downloads transactions as a CSV file
   const handleDownloadCSV = async () => {
     try {
-      const response = await fetch('http://localhost:3000/export/csv');
+      const response = await fetch('https://personal-finance-tracker-avnm.onrender.com/export/csv');
       if (!response.ok) throw new Error('Download failed from server.');
       
       const blob = await response.blob();

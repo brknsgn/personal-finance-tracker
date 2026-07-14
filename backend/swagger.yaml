@@ -4,7 +4,7 @@ info:
   version: 1.0.0
   description: REST API for managing personal finance transactions, including income and expenses.
 servers:
-  - url: http://localhost:3000
+  - url: https://personal-finance-tracker-avnm.onrender.com/
 paths:
   /transactions: 
     get:

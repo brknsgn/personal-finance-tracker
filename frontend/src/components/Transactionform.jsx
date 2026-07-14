@@ -34,7 +34,7 @@ export default function TransactionForm({ onTransactionAdded }) {
     };
 
     try {
-      const response = await fetch('http://localhost:3000/transactions', {
+      const response = await fetch('https://personal-finance-tracker-avnm.onrender.com/transactions', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
