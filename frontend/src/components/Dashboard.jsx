@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend, ArcElement } from 'chart.js';
 import { Pie, Line } from 'react-chartjs-2';
-import TransactionForm from './Transactionform';
+import TransactionForm from './TransactionForm';
 
 // COMPONENT IMPORTS (Make sure your file paths are correct)
 import TransactionTable from './TransactionTable'; 
