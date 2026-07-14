@@ -132,26 +132,30 @@ UI Update
 
 ### Dashboard
 
+<img width="1890" height="910" alt="image" src="https://github.com/user-attachments/assets/4dd25686-aa38-4a8e-a154-87575042d56a" />
 
-<img width="1906" height="908" alt="image" src="https://github.com/user-attachments/assets/954fc8a5-c61e-4e47-b89d-3b9ad65c5912" />
+
 
 
 ### Transactions Page
 
-<img width="1893" height="351" alt="image" src="https://github.com/user-attachments/assets/1468fc4d-1632-4a24-a8b4-fba1bc403793" />
+
+<img width="1246" height="676" alt="image" src="https://github.com/user-attachments/assets/efb34bca-ab57-45f2-8b63-e08dc59abc7c" />
 
 
 
 
 ### Analytics & Charts
 
-<img width="1897" height="246" alt="image" src="https://github.com/user-attachments/assets/38fac776-05cf-458c-be17-31392231d0fa" />
+<img width="1136" height="842" alt="image" src="https://github.com/user-attachments/assets/2d1f0ae9-891d-4d33-acba-5a505a158be2" />
+
 
 
 ### CSV Export
 
 
-<img width="136" height="45" alt="image" src="https://github.com/user-attachments/assets/65264526-eb8e-4bf0-b787-3cfe49dbede9" />
+<img width="242" height="120" alt="image" src="https://github.com/user-attachments/assets/a6a62d43-ef30-462f-ba64-d506ee349d98" />
+
 
 
 
