@@ -4,7 +4,9 @@ import { Pie, Line } from 'react-chartjs-2';
 import TransactionForm from './TransactionForm';
 import {FaWallet,FaArrowUp,FaArrowDown} from "react-icons/fa";
 import { FaChartPie, FaChartLine } from "react-icons/fa";
-import CountUp from "react-countup";
+import CountUpModule from "react-countup";
+
+const CountUp = CountUpModule.default;
 
 // COMPONENT IMPORTS (Make sure your file paths are correct)
 import TransactionTable from './TransactionTable'; 
@@ -13,6 +15,7 @@ import Filters from './Filters';
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend, ArcElement);
 
 export default function Dashboard() {
+
   // Global summary statistics (income, expense, balance)
   const [summary, setSummary] = useState({ income: 0, expense: 0, balance: 0, categoryExpenses: [] });
   
@@ -213,21 +216,46 @@ const fetchTransactions = async () => {
     <FaArrowUp />
     Total Income
 </h4>
-          <h2 className="text-green-600 text-lg md:text-2xl font-bold m-0">+₺{totalIncome}</h2>
+          <h2 className="text-green-600 text-lg md:text-2xl font-bold m-0">
+  +₺
+  <CountUp
+    start={0}
+    end={Number(totalIncome)}
+    duration={2.5}
+    separator=","
+  />
+</h2>
         </div>
        <div className="flex-1 p-6 bg-red-50 border border-red-200 rounded-2xl shadow-md hover:-translate-y-1 hover:shadow-xl transition-all duration-300 ">
           <h4 className="flex items-center gap-2 text-red-700 font-semibold mb-1 text-sm md:text-base"><FaArrowDown />Total Expense
           </h4>
-          <h2 className="text-red-600 text-lg md:text-2xl font-bold m-0">-₺{totalExpense}</h2>
+          <h2 className="text-red-600 text-lg md:text-2xl font-bold m-0">
+  -₺
+  <CountUp
+    start={0}
+    end={Number(totalExpense)}
+    duration={2.5}
+    separator=","
+  />
+</h2>
         </div>
         <div className="flex-1 p-6 bg-blue-50 border border-blue-200 rounded-2xl shadow-md hover:-translate-y-1 hover:shadow-xl transition-all duration-300 ">
          <h4 className="flex items-center gap-2 text-blue-700 font-semibold mb-1 text-sm md:text-base">
     <FaWallet />
     Current Balance
-</h4>
-          <h2 className={`text-lg md:text-2xl font-bold m-0 ${balance >= 0 ? 'text-black' : 'text-red-600'}`}>
-            ₺{balance}
-          </h2>
+</h4><h2
+  className={`text-lg md:text-2xl font-bold m-0 ${
+    balance >= 0 ? "text-black" : "text-red-600"
+  }`}
+>
+  ₺
+  <CountUp
+    start={0}
+    end={Number(balance)}
+    duration={2.5}
+    separator=","
+  />
+</h2>
         </div>
       </div>
 
